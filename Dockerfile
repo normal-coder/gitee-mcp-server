@@ -1,7 +1,7 @@
 FROM node:22.12-alpine AS builder
 
 # 复制项目文件
-COPY src/gitee /app
+COPY . /app
 COPY tsconfig.json /tsconfig.json
 
 WORKDIR /app

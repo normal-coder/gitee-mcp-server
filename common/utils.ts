@@ -72,7 +72,7 @@ export async function giteeRequest(
   headers?: Record<string, string>
 ): Promise<unknown> {
   // Check if the URL is already a full URL or a path
-  const url = urlPath.startsWith("http") ? urlPath : `${getGiteeApiBaseUrl()}${urlPath.startsWith("/") ? urlPath : `/${urlPath}`}`;
+  let url = urlPath.startsWith("http") ? urlPath : `${getGiteeApiBaseUrl()}${urlPath.startsWith("/") ? urlPath : `/${urlPath}`}`;
   const requestHeaders: Record<string, string> = {
     "Accept": "application/json",
     "Content-Type": "application/json",
@@ -83,7 +83,7 @@ export async function giteeRequest(
   if (process.env.GITEE_PERSONAL_ACCESS_TOKEN) {
     // The Gitee API uses `access_token` as a query parameter or in the `Authorization` header.
     // Method 1: Add to URL Query Parameters
-    const urlObj = new URL(url);
+    let urlObj = new URL(url);
     urlObj.searchParams.append('access_token', process.env.GITEE_PERSONAL_ACCESS_TOKEN);
     url = urlObj.toString();
 
