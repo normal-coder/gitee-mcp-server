@@ -1,254 +1,162 @@
-# Gitee MCP Server
+<div align="center">
+<h2>Gitee MCP Server</h2>
+<p align="center">Let AI operate Gitee repositories/Issues/Pull Requests for you through MCP</p>
 
-MCP Server for the Gitee API, enabling file operations, repository management, issue management, pull request management, and more.
+[![LICENSE](https://img.shields.io/badge/license-MIT-blue.svg)](./LICENSE)
 
-### Features
+[![Node Version](https://img.shields.io/badge/node-%3E%3D22.12.0-brightgreen.svg)](./package.json)
+![NPM Version](https://img.shields.io/npm/v/gitee-mcp-server)
 
-- **Configurable API Endpoint**: The Gitee API endpoint URL can be configured through environment variables
-- **Comprehensive Error Handling**: Clear error messages for common issues
-- **Automatic Branch Creation**: When creating/updating files or pushing changes, branches are automatically created if they don't exist
-- **Git History Preservation**: Operations maintain proper Git history without force pushing
-- **Batch Operations**: Support for both single-file and multi-file operations
+![Docker Pulls](https://img.shields.io/docker/pulls/normalcoder/gitee-mcp-server)
+![Docker Image Version](https://img.shields.io/docker/v/normalcoder/gitee-mcp-server)
+</div>
 
-## Tools
+---
 
-### Repository Operations
+## Supported AI Operations
 
-1. `create_repository`
-   - Create a new Gitee repository
-   - Inputs:
-     - `name` (string): Repository name
-     - `description` (optional string): Repository description
-     - `homepage` (optional string): Homepage URL
-     - `private` (optional boolean): Whether the repository is private
-     - `has_issues` (optional boolean): Whether to enable Issue functionality
-     - `has_wiki` (optional boolean): Whether to enable Wiki functionality
-     - `auto_init` (optional boolean): Whether to automatically initialize the repository
-     - `gitignore_template` (optional string): Git Ignore template
-     - `license_template` (optional string): License template
-     - `path` (optional string): Repository path
-   - Returns: Created repository details
+| Category | MCP Tool | Description |
+|:----:|:----|:----|
+| Repository Operations | `create_repository` | Create a Gitee repository | 
+| | `fork_repository` | Fork a Gitee repository | 
+| Branch Operations | `create_branch` | Create a new branch in a Gitee repository | 
+| | `list_branches` | List branches in a Gitee repository | 
+| | `get_branch` | Get details of a specific branch in a Gitee repository | 
+| File Operations | `get_file_contents` | Get contents of a file or directory in a Gitee repository | 
+| | `create_or_update_file` | Create or update a file in a Gitee repository | 
+| | `push_files` | Push multiple files to a Gitee repository | 
+| Issue Operations | `create_issue` | Create an Issue in a Gitee repository | 
+| | `list_issues` | List Issues in a Gitee repository | 
+| | `get_issue` | Get details of a specific Issue in a Gitee repository | 
+| | `update_issue` | Update an Issue in a Gitee repository | 
+| | `add_issue_comment` | Add a comment to an Issue in a Gitee repository | 
+| Pull Request Operations | `create_pull_request` | Create a Pull Request in a Gitee repository | 
+| | `list_pull_requests` | List Pull Requests in a Gitee repository | 
+| | `get_pull_request` | Get details of a specific Pull Request in a Gitee repository | 
+| | `update_pull_request` | Update a Pull Request in a Gitee repository | 
+| | `merge_pull_request` | Merge a Pull Request in a Gitee repository | 
+| User Operations | `get_user` | Get Gitee user information | 
+| | `get_current_user` | Get authenticated Gitee user information | 
 
-2. `fork_repository`
-   - Fork a Gitee repository to your account or specified organization
-   - Inputs:
-     - `owner` (string): Repository owner (username or organization)
-     - `repo` (string): Repository name
-     - `organization` (optional string): Organization to fork to (defaults to personal account)
-   - Returns: Forked repository details
-
-### Branch Operations
-
-3. `create_branch`
-   - Create a new branch in a Gitee repository
-   - Inputs:
-     - `owner` (string): Repository owner (username or organization)
-     - `repo` (string): Repository name
-     - `branch_name` (string): Name for the new branch
-     - `refs` (string): Source reference for the branch, default: master
-   - Returns: Created branch details
-
-4. `list_branches`
-   - List branches in a Gitee repository
-   - Inputs:
-     - `owner` (string): Repository owner (username or organization)
-     - `repo` (string): Repository name
-     - `sort` (optional string): Sort field
-     - `direction` (optional string): Sort direction (asc or desc)
-     - `page` (optional number): Page number
-     - `per_page` (optional number): Number of items per page
-   - Returns: List of branches
-
-5. `get_branch`
-   - Get details of a specific branch in a Gitee repository
-   - Inputs:
-     - `owner` (string): Repository owner (username or organization)
-     - `repo` (string): Repository name
-     - `branch` (string): Branch name
-   - Returns: Branch details
-
-### File Operations
-
-6. `get_file_contents`
-   - Get the contents of a file or directory from a Gitee repository
-   - Inputs:
-     - `owner` (string): Repository owner (username or organization)
-     - `repo` (string): Repository name
-     - `path` (string): Path to the file or directory
-     - `branch` (optional string): Branch to get contents from
-   - Returns: File or directory contents
-
-7. `create_or_update_file`
-   - Create or update a single file in a Gitee repository
-   - Inputs:
-     - `owner` (string): Repository owner (username or organization)
-     - `repo` (string): Repository name
-     - `path` (string): Path where to create/update the file
-     - `content` (string): Content of the file
-     - `message` (string): Commit message
-     - `branch` (optional string): Branch name, defaults to the repository's default branch
-     - `sha` (optional string): File SHA, required when updating an existing file
-   - Returns: File operation result
-
-8. `push_files`
-   - Push multiple files to a Gitee repository in a single commit
-   - Inputs:
-     - `owner` (string): Repository owner (username or organization)
-     - `repo` (string): Repository name
-     - `branch` (optional string): Branch to push to
-     - `message` (string): Commit message
-     - `files` (array): Array of files to push, each with path and content
-   - Returns: Operation result
-
-### Issue Operations
-
-9. `create_issue`
-   - Create a new issue in a Gitee repository
-   - Inputs:
-     - `owner` (string): Repository owner (username or organization)
-     - `repo` (string): Repository name
-     - `title` (string): Issue title
-     - `body` (optional string): Issue content
-     - `assignees` (optional array): Users assigned to the issue
-     - `milestone` (optional number): Milestone ID
-     - `labels` (optional array): Labels
-     - `security_hole` (optional boolean): Whether the issue is private
-   - Returns: Created issue details
-
-10. `get_issue`
-    - Get details of a specific issue in a Gitee repository
-    - Inputs:
-      - `owner` (string): Repository owner (username or organization)
-      - `repo` (string): Repository name
-      - `issue_number` (number): Issue number
-    - Returns: Issue details
-
-11. `update_issue`
-    - Update an existing issue in a Gitee repository
-    - Inputs:
-      - `owner` (string): Repository owner (username or organization)
-      - `repo` (string): Repository name
-      - `issue_number` (number): Issue number
-      - `title` (optional string): Issue title
-      - `body` (optional string): Issue content
-      - `assignees` (optional array): Users assigned to the issue
-      - `milestone` (optional number): Milestone ID
-      - `labels` (optional array): Labels
-      - `state` (optional string): Issue state (open, closed, progressing)
-    - Returns: Updated issue details
-
-12. `add_issue_comment`
-    - Add a comment to an existing issue
-    - Inputs:
-      - `owner` (string): Repository owner (username or organization)
-      - `repo` (string): Repository name
-      - `issue_number` (number): Issue number
-      - `body` (string): Comment content
-    - Returns: Created comment details
-
-13. `list_issues`
-    - List issues in a Gitee repository with filtering options
-    - Inputs:
-      - `owner` (string): Repository owner (username or organization)
-      - `repo` (string): Repository name
-      - `state` (optional string): Issue state (open, closed, all)
-      - `sort` (optional string): Sort field (created, updated, comments)
-      - `direction` (optional string): Sort direction (asc, desc)
-      - `labels` (optional string): Labels, multiple labels separated by commas
-      - `milestone` (optional number): Milestone ID
-      - `assignee` (optional string): Filter issues assigned to a specific user
-      - `creator` (optional string): Filter issues created by a specific user
-      - `program` (optional string): Filter issues for a specific program
-      - `page` (optional number): Page number
-      - `per_page` (optional number): Number of items per page, maximum 100
-    - Returns: List of issues
-
-### Pull Request Operations
-
-14. `create_pull_request`
-    - Create a new pull request in a Gitee repository
-    - Inputs:
-      - `owner` (string): Repository owner (username or organization)
-      - `repo` (string): Repository name
-      - `title` (string): Pull Request title
-      - `head` (string): Source branch name
-      - `base` (string): Target branch name
-      - `body` (optional string): Pull Request content
-      - `milestone_number` (optional number): Milestone number
-      - `labels` (optional array): Labels
-      - `issue` (optional string): Related issue, format: #xxx
-      - `assignees` (optional array): Reviewers
-      - `testers` (optional array): Testers
-      - `prune_source_branch` (optional boolean): Whether to delete the source branch after merging
-    - Returns: Created pull request details
-
-### User Operations
-
-15. `get_user`
-    - Get details of a Gitee user
-    - Inputs:
-      - `username` (string): Username
-    - Returns: User details
-
-## Installation
-
-1. Clone the repository
-2. Install dependencies
-3. Build the project
-
-```bash
-cd src/gitee
-
-# Install dependencies
-npm install
-
-# Build the project
-npm run build
-```
-
-## Configuration
-
-Create a `.env` file in the root directory with the following content:
-
-```
-GITEE_PERSONAL_ACCESS_TOKEN=put_your_gitee_personal_access_token_here
-```
-
-You can obtain a personal access token from your Gitee account settings.
 
 ## Usage
 
-### Running the Server
+### Configuration
+
+- `GITEE_API_BASE_URL`: Optional, Gitee OpenAPI Endpoint, default is `https://gitee.com/api/v5`
+- `GITEE_PERSONAL_ACCESS_TOKEN`: Required, Gitee account personal access token (PAT), can be obtained from Gitee account settings [Personal Access Tokens](https://gitee.com/profile/personal_access_tokens)
+
+
+### Run MCP Server via NPX
+
+```json
+{
+  "mcpServers": {
+    "Gitee": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "@gitee-mcp-server"
+      ],
+      "env": {
+        "GITEE_PERSONAL_ACCESS_TOKEN": "<YOUR_TOKEN>"
+      },
+    }
+  }
+}
+```
+
+### Run MCP Server via Docker Container
+
+1. Get Docker Image
 
 ```bash
-# Start the server
+# Get from DockerHub
+docker pull normalcoder/gitee-mcp-server
+
+# Build locally
+docker build -t normalcoder/gitee-mcp-server .
+```
+
+2. Configure MCP Server
+
+```json
+{
+  "mcpServers": {
+    "Gitee": {
+      "command": "docker",
+      "args": [
+        "run",
+        "-i",
+        "--rm",
+        "-e",
+        "GITEE_PERSONAL_ACCESS_TOKEN",
+        "normalcoder/gitee-mcp-server"
+      ],
+      "env": {
+        "GITEE_PERSONAL_ACCESS_TOKEN": "<YOUR_TOKEN>"
+      },
+    }
+  }
+}
+```
+
+## Development Guide
+
+### Install Dependencies
+
+```bash
+npm install
+```
+
+### Build
+
+```bash
+npm run build
+```
+
+After successful build, `/dist` will contain the runnable MCP server.
+
+### Run Server
+
+```bash
 npm start
 ```
 
-The server runs on stdio, which allows it to be used as a subprocess by MCP clients.
+The MCP server will run on stdio, allowing it to be used as a subprocess by MCP clients.
 
-### Docker
+### Build Docker Image
 
 You can also run the server using Docker:
 
 ```bash
-# Build the Docker image
-docker build -t gitee-mcp-server -f Dockerfile .
-
-# Run the container
-docker run -e GITEE_PERSONAL_ACCESS_TOKEN=your_token gitee-mcp-server
+docker build -t normalcoder/gitee-mcp-server .
 ```
 
-## Dependencies
+Run MCP Server with Docker:
 
-- `@modelcontextprotocol/sdk`: MCP SDK for server implementation
-- `universal-user-agent`: For user agent string generation
-- `zod`: For schema validation
-- `zod-to-json-schema`: For converting Zod schemas to JSON schemas
+```bash
+docker run -e GITEE_PERSONAL_ACCESS_TOKEN=<YOUR_TOKEN> normalcoder/gitee-mcp-server
+```
 
-## Debug Utilities
+### Debug MCP Server
 
-The server includes a debug utility function that can be used to log debug information:
+You can use `@modelcontextprotocol/inspector` for debugging:
+
+Create a `.env` file in the root directory for environment variables:
+
+```.env
+GITEE_API_BASE_URL=https://gitee.com/api/v5
+GITEE_PERSONAL_ACCESS_TOKEN=<YOUR_TOKEN>
+```
+
+Run the debug tool to start the service and web debug interface:
+
+```bash
+npx @modelcontextprotocol/inspector npm run start --env-file=.env
+```
+
+The project includes a `debug()` function for printing debug information, usage:
 
 ```typescript
 import { debug } from './common/utils.js';
@@ -257,15 +165,18 @@ debug('Message to log');
 debug('Message with data:', { key: 'value' });
 ```
 
+## Dependencies
+
+- `@modelcontextprotocol/sdk`: MCP SDK for server implementation
+- `universal-user-agent`: For generating user agent strings
+- `zod`: For schema validation
+- `zod-to-json-schema`: For converting Zod schemas to JSON schemas
+
 ## License
 
-This MCP server is licensed under the MIT License. This means you are free to use, modify, and distribute the software, subject to the terms and conditions of the MIT License. For more details, please see the LICENSE file in the project repository.
+Licensed under MIT License. You are free to use, modify and distribute the software, subject to the terms and conditions of the MIT License. For more details, see the [LICENSE](./LICENSE) file in the project repository.
 
-## Authors
-
-- 诺墨 <normal@normalcoder.com>
-- Gitee (https://gitee.com)
-
-## Links
+## Related Links
 
 - [Model Context Protocol](https://modelcontextprotocol.io)
+- [Gitee](https://gitee.com)
