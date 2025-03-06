@@ -56,11 +56,11 @@
       "command": "npx",
       "args": [
         "-y",
-        "@gitee-mcp-server"
+        "gitee-mcp-server"
       ],
       "env": {
         "GITEE_PERSONAL_ACCESS_TOKEN": "<YOUR_TOKEN>"
-      },
+      }
     }
   }
 }
@@ -95,7 +95,7 @@ docker build -t normalcoder/gitee-mcp-server .
       ],
       "env": {
         "GITEE_PERSONAL_ACCESS_TOKEN": "<YOUR_TOKEN>"
-      },
+      }
     }
   }
 }

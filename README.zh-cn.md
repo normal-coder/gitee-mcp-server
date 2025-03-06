@@ -38,7 +38,6 @@
 | 用户操作 | `get_user` | 获取 Gitee 用户信息 | 
 | | `get_current_user` | 获取当前认证的 Gitee 用户信息 | 
 
-
 ## 用法
 
 ### 配置项
@@ -56,11 +55,11 @@
       "command": "npx",
       "args": [
         "-y",
-        "@gitee-mcp-server"
+        "gitee-mcp-server"
       ],
       "env": {
         "GITEE_PERSONAL_ACCESS_TOKEN": "<YOUR_TOKEN>"
-      },
+      }
     }
   }
 }
@@ -95,7 +94,7 @@ docker build -t normalcoder/gitee-mcp-server .
       ],
       "env": {
         "GITEE_PERSONAL_ACCESS_TOKEN": "<YOUR_TOKEN>"
-      },
+      }
     }
   }
 }
