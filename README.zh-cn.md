@@ -1,15 +1,16 @@
-<div align="center">
-<h2>Gitee MCP Server</h2>
-<p align="center">通过 MCP，让 AI 代你操作 Gitee 上的仓库/Issue/Pull Request</p>
+# Gitee MCP Server
+
+通过 MCP，让 AI 代你操作 Gitee 上的仓库 / Issue / Pull Request
 
 [![LICENSE](https://img.shields.io/badge/license-MIT-blue.svg)](./LICENSE)
-
 [![Node Version](https://img.shields.io/badge/node-%3E%3D22.12.0-brightgreen.svg)](./package.json)
 ![NPM Version](https://img.shields.io/npm/v/gitee-mcp-server)
-
 ![Docker Pulls](https://img.shields.io/docker/pulls/normalcoder/gitee-mcp-server)
 ![Docker Image Version](https://img.shields.io/docker/v/normalcoder/gitee-mcp-server)
-</div>
+
+<a href="https://glama.ai/mcp/servers/Cck9XigM1d">
+  <img width="380" height="200" src="https://glama.ai/mcp/servers/Cck9XigM1d/badge" />
+</a>
 
 ---
 

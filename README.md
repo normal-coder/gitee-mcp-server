@@ -1,15 +1,16 @@
-<div align="center">
-<h2>Gitee MCP Server</h2>
-<p align="center">Let AI operate Gitee repositories/Issues/Pull Requests for you through MCP</p>
+# Gitee MCP Server
+
+Let AI operate Gitee repositories/Issues/Pull Requests for you through MCP
 
 [![LICENSE](https://img.shields.io/badge/license-MIT-blue.svg)](./LICENSE)
-
 [![Node Version](https://img.shields.io/badge/node-%3E%3D22.12.0-brightgreen.svg)](./package.json)
 ![NPM Version](https://img.shields.io/npm/v/gitee-mcp-server)
-
 ![Docker Pulls](https://img.shields.io/docker/pulls/normalcoder/gitee-mcp-server)
 ![Docker Image Version](https://img.shields.io/docker/v/normalcoder/gitee-mcp-server)
-</div>
+
+<a href="https://glama.ai/mcp/servers/Cck9XigM1d">
+  <img width="380" height="200" src="https://glama.ai/mcp/servers/Cck9XigM1d/badge" />
+</a>
 
 ---
 
@@ -38,14 +39,12 @@
 | User Operations | `get_user` | Get Gitee user information | 
 | | `get_current_user` | Get authenticated Gitee user information | 
 
-
 ## Usage
 
 ### Configuration
 
 - `GITEE_API_BASE_URL`: Optional, Gitee OpenAPI Endpoint, default is `https://gitee.com/api/v5`
 - `GITEE_PERSONAL_ACCESS_TOKEN`: Required, Gitee account personal access token (PAT), can be obtained from Gitee account settings [Personal Access Tokens](https://gitee.com/profile/personal_access_tokens)
-
 
 ### Run MCP Server via NPX
 
