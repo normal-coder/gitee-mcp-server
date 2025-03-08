@@ -8,9 +8,7 @@
 ![Docker Pulls](https://img.shields.io/docker/pulls/normalcoder/gitee-mcp-server)
 ![Docker Image Version](https://img.shields.io/docker/v/normalcoder/gitee-mcp-server)
 
-<a href="https://glama.ai/mcp/servers/Cck9XigM1d">
-  <img width="380" height="200" src="https://glama.ai/mcp/servers/Cck9XigM1d/badge" />
-</a>
+[<img width="380" height="200" src="https://glama.ai/mcp/servers/cck9xigm1d/badge" />](https://glama.ai/mcp/servers/Cck9XigM1d)
 
 ---
 
