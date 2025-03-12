@@ -9,6 +9,9 @@ WORKDIR /app
 # 安装依赖并构建
 RUN --mount=type=cache,target=/root/.npm npm install
 
+# 添加构建步骤以生成 dist 目录
+RUN npm run build
+
 FROM node:22.12-alpine AS release
 
 # 从构建阶段复制必要文件
