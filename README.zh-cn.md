@@ -2,11 +2,12 @@
 
 通过 MCP，让 AI 代你操作 Gitee 上的仓库 / Issue / Pull Request
 
-[![LICENSE](https://img.shields.io/badge/license-MIT-blue.svg)](./LICENSE)
 [![Node Version](https://img.shields.io/badge/node-%3E%3D22.12.0-brightgreen.svg)](./package.json)
 ![NPM Version](https://img.shields.io/npm/v/gitee-mcp-server)
 ![Docker Pulls](https://img.shields.io/docker/pulls/normalcoder/gitee-mcp-server)
 ![Docker Image Version](https://img.shields.io/docker/v/normalcoder/gitee-mcp-server)
+[![LICENSE](https://img.shields.io/badge/license-MIT-blue.svg)](./LICENSE)
+[![smithery badge](https://smithery.ai/badge/@normal-coder/gitee-mcp-server)](https://smithery.ai/server/@normal-coder/gitee-mcp-server)
 
 [<img width="380" height="200" src="https://glama.ai/mcp/servers/cck9xigm1d/badge" />](https://glama.ai/mcp/servers/Cck9XigM1d)
 
