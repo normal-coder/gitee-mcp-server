@@ -1,0 +1,31 @@
+# Smithery configuration file: https://smithery.ai/docs/config#smitheryyaml
+
+startCommand:
+  type: stdio
+  configSchema:
+    # JSON Schema defining the configuration options for the MCP.
+    type: object
+    required:
+      - giteePersonalAccessToken
+    properties:
+      giteePersonalAccessToken:
+        type: string
+        description: Gitee personal access token, required for authentication.
+      giteeApiBaseUrl:
+        type: string
+        default: https://gitee.com/api/v5
+        description: Optional Gitee API base URL
+  commandFunction:
+    # A JS function that produces the CLI command based on the given config to start the MCP on stdio.
+    |-
+    (config) => ({
+      command: 'node',
+      args: ['dist/bin.js'],
+      env: {
+        GITEE_PERSONAL_ACCESS_TOKEN: config.giteePersonalAccessToken,
+        GITEE_API_BASE_URL: config.giteeApiBaseUrl || 'https://gitee.com/api/v5'
+      }
+    })
+  exampleConfig:
+    giteePersonalAccessToken: <YOUR_GITEE_PERSONAL_ACCESS_TOKEN>
+    giteeApiBaseUrl: https://gitee.com/api/v5
