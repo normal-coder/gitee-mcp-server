@@ -40,6 +40,14 @@ Let AI operate Gitee repositories/Issues/Pull Requests for you through MCP
 
 ## Usage
 
+### Installing via Smithery
+
+To install Gitee MCP Server for Claude Desktop automatically via [Smithery](https://smithery.ai/server/@normal-coder/gitee-mcp-server):
+
+```bash
+npx -y @smithery/cli install @normal-coder/gitee-mcp-server --client claude
+```
+
 ### Configuration
 
 - `GITEE_API_BASE_URL`: Optional, Gitee OpenAPI Endpoint, default is `https://gitee.com/api/v5`
