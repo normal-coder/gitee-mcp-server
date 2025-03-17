@@ -15,6 +15,9 @@ startCommand:
         type: string
         default: https://gitee.com/api/v5
         description: Optional Gitee API base URL
+      debug:
+        type: boolean
+        description: Enable debug mode
   commandFunction:
     # A JS function that produces the CLI command based on the given config to start the MCP on stdio.
     |-
@@ -23,9 +26,11 @@ startCommand:
       args: ['dist/bin.js'],
       env: {
         GITEE_PERSONAL_ACCESS_TOKEN: config.giteePersonalAccessToken,
-        GITEE_API_BASE_URL: config.giteeApiBaseUrl || 'https://gitee.com/api/v5'
+        GITEE_API_BASE_URL: config.giteeApiBaseUrl || 'https://gitee.com/api/v5',
+        DEBUG: config.debug === true ? 'true' : undefined
       }
     })
   exampleConfig:
     giteePersonalAccessToken: <YOUR_GITEE_PERSONAL_ACCESS_TOKEN>
     giteeApiBaseUrl: https://gitee.com/api/v5
+    debug: false

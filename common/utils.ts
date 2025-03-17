@@ -58,6 +58,11 @@ function generateCurlCommand(url: string, method: string, headers: Record<string
 
 // debug utility function
 export function debug(message: string, data?: unknown): void {
+  // Only output debug logs if DEBUG environment variable is set
+  if (process.env.DEBUG !== "true") {
+    return;
+  }
+  
   if (data !== undefined) {
     console.error(`[DEBUG] ${message}`, typeof data === 'object' ? JSON.stringify(data, null, 2) : data);
   } else {

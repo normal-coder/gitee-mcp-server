@@ -52,6 +52,7 @@ npx -y @smithery/cli install @normal-coder/gitee-mcp-server --client claude
 
 - `GITEE_API_BASE_URL`: Optional, Gitee OpenAPI Endpoint, default is `https://gitee.com/api/v5`
 - `GITEE_PERSONAL_ACCESS_TOKEN`: Required, Gitee account personal access token (PAT), can be obtained from Gitee account settings [Personal Access Tokens](https://gitee.com/profile/personal_access_tokens)
+- `DEBUG`: Optional, set to `true` to enable debug logging, default is disabled
 
 ### Run MCP Server via NPX
 
@@ -170,6 +171,8 @@ import { debug } from './common/utils.js';
 debug('Message to log');
 debug('Message with data:', { key: 'value' });
 ```
+
+Debug logs are only printed when the `DEBUG` environment variable is set to `true`.
 
 ## Dependencies
 

@@ -44,6 +44,7 @@
 
 - `GITEE_API_BASE_URL`: 可选项，Gitee OpenAPI Endpoint，默认值为 `https://gitee.com/api/v5`
 - `GITEE_PERSONAL_ACCESS_TOKEN`: 必填项，Gitee 账户的个人访问令牌（PAT），可通过 Gitee 的账户设置，获取对应帐号的 [个人访问令牌](https://gitee.com/profile/personal_access_tokens)
+- `DEBUG`: 可选项，设置为 `true` 时启用调试日志输出，默认为禁用状态
 
 
 ### 通过 NPX 运行 MCP 服务器
@@ -163,6 +164,8 @@ import { debug } from './common/utils.js';
 debug('要记录的消息');
 debug('带有数据的消息：', { key: 'value' });
 ```
+
+调试日志仅在环境变量 `DEBUG` 设置为 `true` 时才会输出。
 
 ## 依赖
 
